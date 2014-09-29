@@ -1,0 +1,16 @@
+.footer {
+
+	position: fixed !important;
+	bottom: 0px !important;
+	color: #000000;
+}
+
+
+
+.dragdropover {
+border: 2px dashed #ee3939;
+text-align: center;
+min-height: 20px;
+
+
+}
