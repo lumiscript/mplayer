@@ -8,7 +8,6 @@
 	var request = require('request');
 	var cheerio = require('cheerio');
 	var dir = require('node-dir');
-	var browser = require('airplay').createBrowser();
 	var Download = require('download');
 	var progress = require('download-status');
 	var fs = require('fs');
@@ -174,39 +173,6 @@
 	    });
 
 
-
-	});
-
-
-	app.post('/api/stream', function(req, res) {
-
-		var url = req.body.url;
-		console.log(url);
-
-
-		browser.on('deviceOnline', function(device) {
-
-		console.log(browser.getDevices());
-		console.log('device online: ' + device.id);
-
-	    device.play(url, 0);
-
-		setInterval(function() {
-	      
-	      	device.status(function(res) {
-	 
-			console.log('position:  ' + res.position);
-
-			});     
-		      
-		      }, 5000);
-		  });
-
-		browser.start();
-
-		res.json({status: 'playing'});
-
-       
 
 	});
 
