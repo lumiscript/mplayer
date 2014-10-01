@@ -48,8 +48,10 @@
 	io.on('connection', function(socket){
   		console.log('a user connected');
 
+  		
 
-		// when the client emits 'adduser', this listens and executes
+
+  		// when the client emits 'adduser', this listens and executes
 		socket.on('addtoQueue', function(loadedSong){
 			console.log(loadedSong);
 
@@ -57,6 +59,8 @@
 
 
 		});
+
+
 
 
   	 socket.on('disconnect', function(){
@@ -67,6 +71,16 @@
 
 	
 	});
+
+
+		// when the client emits 'adduser', this listens and executes
+		io.on('emitButton', function(message){
+			console.log(message);
+
+			socket.emit('emitButton', message);
+
+
+		});
 
 
 	

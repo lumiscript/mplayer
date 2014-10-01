@@ -58,6 +58,7 @@
   });
 
 
+
 musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
 
 
@@ -94,15 +95,6 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
          if (soundObject.url.indexOf("http") !=-1) {
             console.log('http in string so play direct');
             }
-            
-
-            else if(soundObject.source == "clouddrive") {
-
-              
-              soundObject.url = 'music/asaplacetobe.mp3'
-
-            }
-
 
         else {
             soundObject.url = 'http://southpawgroup.com/gidimusicplayer/gidimusic/newplayer/songs/Various/' + soundObject.url
@@ -382,11 +374,13 @@ musicApp.controller('downloadController', function($scope, $http) {
 
 musicApp.controller('queueController', function($scope, $http, player) {
 
+     var socket = io();
+     
     $scope.incomingQueue = [];
     $scope.username = '';
 
 
-    var socket = io.connect('http://localhost:8080');
+   
 
 
     // on connection to server, ask for user's name with an anonymous callback
@@ -397,14 +391,15 @@ musicApp.controller('queueController', function($scope, $http, player) {
 
 
     socket.on('incomingSong', function(loadedSong) {
-
       console.log(loadedSong.title);
       $scope.incomingQueue.push(loadedSong);
       $scope.$apply();
-      
       $scope.playnewSound(loadedSong, 1);
-
     });
+
+
+    
+
 
 
 // Array Remove - By John Resig (MIT Licensed)
