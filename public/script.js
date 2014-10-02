@@ -58,25 +58,156 @@
   });
 
 
+/*
+musicApp.factory('liveQueue', ['$window', '$rootScope', function($rootScope) {
+
+
+  queueList: function() {
+
+
+  },
+
+
+
+
+}]);
+
+*/
+
+
 
 musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
-
-
-  var player = {
-    duration: $rootScope.duration,
-    loadedSongs: {},
-    position: 0,
    
+  
+
+   var player = {
+
+    listofSongs : {list: []},
+
+    addSong: function(object) {
+      console.log('just added this song ' + object.title );
+      this.listofSongs.list.push(object);
+    },
+
+    playQueue: function(soundObject, songPosition) {
+
+
+    //Toggle play and pause button
+     $(".jp-play").css('display', 'none');
+     $(".jp-pause").css('display', 'inline-block');
+
+
+    soundManager.destroySound('aSound');
+     
+    console.log(soundObject + '  is my object');
+     if (soundObject.url.indexOf("http") !=-1) {
+        console.log('http in string so play direct');
+        }
+
+    else {
+        soundObject.url = 'http://southpawgroup.com/gidimusicplayer/gidimusic/newplayer/songs/Various/' + soundObject.url
+
+        };
+
+
+      //soundmanager object
+       soundManager.setup({
+            
+          onready: function() {
+            var mySound = soundManager.createSound({
+              id: 'aSound',
+              url: soundObject.url,
+
+              whileplaying: function() {
+                  var currentPercentage = (this.position / this.duration) * 100;
+                   $(".jp-play-bar").css('width', currentPercentage + '%');
+
+                   var millistosecond = function (millis) {
+
+                        var minutes = Math.floor(millis / 60000);
+                        var seconds = ((millis % 60000) / 1000).toFixed(0);
+                        return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+
+                   };
+
+
+
+                    $(".jp-current-time").text(millistosecond(this.position));
+                    $(".jp-duration").text(millistosecond(this.duration));
+                                  
+                    
+                  },
+              onfinish: function() {
+                $(".jp-play-bar").css('width', 0 + '%');
+                $(".jp-pause").css('display', 'none');
+                $(".jp-play").css('display', 'inline-block');
+
+
+
+                
+                var nextPosition = songPosition + 1;
+                //var nextSong = player.listofSongs.list[nextPosition];
+                console.log(player.listofSongs.list[nextPosition] + '  IS NEXT OBJ');
+                
+                
+                if(player.listofSongs.list[nextPosition] !== undefined)  {
+                      player.playQueue(player.listofSongs.list[nextPosition], nextPosition);    
+                  }
+                  else if (player.listofSongs.list[nextPosition] == undefined )
+                  {
+                    console.log('list is empty');
+                  };
+
+                
+
+                
+                
+                
+     
+            },
+
+
+                
+                });
+            
+         
+
+
+           //console.log(sound.durationEstimate);
+            mySound.play();
+            $(".jp-title").text(soundObject.title);
+
+
+            },
+
+          });
+
+
+  //Seeking
+   $(".jp-seek-bar").click(function(e){
+                 
+            var sound = soundManager.getSoundById('aSound');
+            console.log(sound.position);
+
+            var x = e.pageX - $(this).offset().left,
+            width = $(this).width(),
+            duration = sound.durationEstimate;
+
+
+            sound.setPosition((x / width) * duration);
+
+              });
+  
+
+
+
+    },
 
     
     play: function(soundObject, songPosition, loadedSongs) {
 
     $('.musicbar').addClass('animate');
 
-   // $rootScope.loadedSongs = loadedSongs;
-    player.loadedSongs = loadedSongs;
-
-      player.position = songPosition;
      $(".jp-play").css('display', 'none');
      $(".jp-pause").css('display', 'inline-block');
      
@@ -132,17 +263,19 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
                 $(".jp-pause").css('display', 'none');
                 $(".jp-play").css('display', 'inline-block');
 
-              var nextUrl = loadedSongs[songPosition + 1].url;
-              var nextPosition = songPosition + 1;
-              var nextSong = loadedSongs[nextPosition];
-              player.position = nextPosition;
 
-              player.play(nextSong, nextPosition, loadedSongs);
 
-              songPosition = player.position + 1;
-              
-              console.log('we are playing song ' + player.position);
-   
+                var nextUrl = loadedSongs[songPosition + 1].url;
+                var nextPosition = songPosition + 1;
+                var nextSong = loadedSongs[nextPosition];
+                player.position = nextPosition;
+
+                player.play(nextSong, nextPosition, loadedSongs);
+
+                songPosition = player.position + 1;
+                
+                console.log('we are playing song ' + player.position);
+     
             },
 
 
@@ -372,12 +505,15 @@ musicApp.controller('downloadController', function($scope, $http) {
   });
 
 
-musicApp.controller('queueController', function($scope, $http, player) {
+musicApp.controller('queueController', function($scope, $http, $rootScope, player) {
 
      var socket = io();
      
     $scope.incomingQueue = [];
     $scope.username = '';
+
+
+    //$rootScope.queueArray = [];
 
 
    
@@ -394,10 +530,20 @@ musicApp.controller('queueController', function($scope, $http, player) {
       console.log(loadedSong.title);
       $scope.incomingQueue.push(loadedSong);
       $scope.$apply();
-      $scope.playnewSound(loadedSong, 1);
+    
+      //$scope.playnewSound(loadedSong, 1);
+
+      player.addSong(loadedSong);
+      
+
     });
 
 
+$scope.startQueue = function() {
+
+  player.playQueue(player.listofSongs.list[0], 1);
+
+};
     
 
 

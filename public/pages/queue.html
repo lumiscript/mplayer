@@ -44,6 +44,9 @@
 
         <div class="container">
         <h2 class="font-thin m-b">Incoming</h2>
+        <a ng-click="startQueue()" class="btn btn-s-md btn-success">Start Queue</a>
+
+        <a class="text-xs"> {{player.listofSongs.list}} </a>
 
         <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="loadedSong in incomingQueue track by $index">
                     <div class="item">
