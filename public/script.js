@@ -473,7 +473,10 @@ musicApp.controller('downloadController', function($scope, $http) {
 
         });
         $scope.url = '';
-    }
+    };
+
+
+
 
 
     //Live search
