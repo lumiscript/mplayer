@@ -528,15 +528,20 @@ musicApp.controller('queueController', function($scope, $http, $rootScope, playe
    // socket.emit('adduser', prompt("What's your name?"));
   });
 
+    $scope.liveQueue = player.listofSongs.list;
+
 
     socket.on('incomingSong', function(loadedSong) {
       console.log(loadedSong.title);
       $scope.incomingQueue.push(loadedSong);
       $scope.$apply();
+
     
       //$scope.playnewSound(loadedSong, 1);
 
+
       player.addSong(loadedSong);
+      $scope.liveQueue = player.listofSongs.list;
       
 
     });
