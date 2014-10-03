@@ -518,11 +518,10 @@ musicApp.controller('downloadController', function($scope, $http) {
 musicApp.controller('queueController', function($scope, $http, player, $firebase, $routeParams) {
   
   $scope.roomname = $routeParams.roomname;
-  console.log($scope.roomname);
+
 
   $scope.incomingQueue = [];
 
-  //CREATE A FIREBASE REFERENCE
   var ref = new Firebase("https://gplayer.firebaseio.com/queues/" + $scope.roomname);
 
   // GET MESSAGES AS AN ARRAY
