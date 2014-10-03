@@ -43,7 +43,7 @@
         controller  : 'searchController'
       })
 
-        .when('/queue', {
+        .when('/queue/:roomname', {
         templateUrl : 'pages/queue.html',
         controller  : 'queueController'
       })
@@ -172,7 +172,7 @@ musicApp.factory('player', ['$window', function() {
 
                 
                 var nextPosition = songPosition + 1;
-                //var nextSong = player.listofSongs.list[nextPosition];
+              
                 console.log(loadedSongs[nextPosition] + '  IS NEXT OBJ');
                 
                 
@@ -190,10 +190,9 @@ musicApp.factory('player', ['$window', function() {
             
          
 
-
-           //console.log(sound.durationEstimate);
             mySound.play();
             $(".jp-title").text(soundObject.title);
+            $('.nowPlayingArt').attr('src', soundObject.thumbnail);
 
 
             },
@@ -512,53 +511,30 @@ musicApp.controller('downloadController', function($scope, $http) {
         }
         
     });  
-
-
-
-
   
   });
 
 
-musicApp.controller('queueController', function($scope, $http, player, $firebase) {
+musicApp.controller('queueController', function($scope, $http, player, $firebase, $routeParams) {
   
+  $scope.roomname = $routeParams.roomname;
+  console.log($scope.roomname);
+
   $scope.incomingQueue = [];
 
-//CREATE A FIREBASE REFERENCE
-          var ref = new Firebase("https://gplayer.firebaseio.com/queues");
+  //CREATE A FIREBASE REFERENCE
+  var ref = new Firebase("https://gplayer.firebaseio.com/queues/" + $scope.roomname);
 
-          // GET MESSAGES AS AN ARRAY
-          $scope.incomingQueue = $firebase(ref).$asArray();
+  // GET MESSAGES AS AN ARRAY
+  $scope.incomingQueue = $firebase(ref).$asArray();
 
- 
-  // create a synchronized array for use in queue.html
-//$scope.incomingQueue = player.
-
-
+  
 
 
      var socket = io();
      
     
     $scope.username = '';
-
-
-      //load queue from db
-
-      /*
-      $http.get('/api/getQueue/')
-      .success(function(data) {
-    
-       
-       $scope.incomingQueue = data.tracks;
-
-    })
-
-      .error(function(data) {
-      console.log('Error: ' + data);
-    });
-   
-*/
 
     // on connection to server, ask for user's name with an anonymous callback
     socket.on('connect', function(){
@@ -593,6 +569,12 @@ $scope.startQueue = function() {
 };
     
 
+$scope.removeFromQueue = function(index) {
+
+  $scope.incomingQueue.$remove(index);
+
+
+};
 
 
 // Array Remove - By John Resig (MIT Licensed)
