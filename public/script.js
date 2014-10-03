@@ -525,7 +525,7 @@ musicApp.controller('queueController', function($scope, $http, player, $firebase
   $scope.incomingQueue = [];
 
 //CREATE A FIREBASE REFERENCE
-          var ref = new Firebase("https://gplayer.firebaseio.com/");
+          var ref = new Firebase("https://gplayer.firebaseio.com/queues");
 
           // GET MESSAGES AS AN ARRAY
           $scope.incomingQueue = $firebase(ref).$asArray();
@@ -609,7 +609,7 @@ Array.prototype.remove = function(from, to) {
         $scope.loadedSongs.remove(index);
         //player.addSongToQueue(loadedSong);
         $scope.incomingQueue.$add(loadedSong);
-        
+
         
    
 
