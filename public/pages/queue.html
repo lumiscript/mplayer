@@ -1,64 +1,84 @@
-  <section class="scrollable padder-lg w-f-md" style="margin-bottom:40px;"> <a href="#refresh" class="pull-right text-muted m-t-lg" data-toggle="class:fa-spin" ><i class="icon-refresh i-lg inline" id="refresh"></i></a>
-                <h2 class="font-thin m-b">Search for Songs here</h2>
+  <section class="scrollable padder-lg w-f-md" style="margin-bottom:40px;"> 
+           
                 <div class="row row-sm">
                   
 
 <div class="row">
                    
-        <div class="col-sm-12">
-                        
-   <section class="panel panel-default">
-                         
-      <div class="panel-body">
-        
-        <form role="form">
-          <div class="form-group">
-           
-             <input ng-model="songSearch" type="text" class="form-control" placeholder="Search for Songs here" ng-model-options="{debounce: 1000}">
-          </div>
-       
-        </form>
+        <div class="col-sm-6">
+            <h3 class="font-thin">Cool Lounge</h3>
 
+            <section class="panel panel-default">
 
-      </div>
+                <div class="panel-body">
 
+                <form ng-submit="runSearch()">
+                <div class="form-group">
 
-                     
-    <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="loadedSong in loadedSongs">
-                    <div class="item">
-                      <div class="pos-rlt">
-                       
-                        <div class="item-overlay opacity r r-2x bg-black">
-                         
-                          <div class="center text-center m-t-n"> <a ng-click="addtoQueue(loadedSong, $index)"><i class="icon-plus i-2x"></i></a> </div>
-                          <div class="bottom padder m-b-sm"> <a href="#" class="pull-right"> <i class="fa fa-heart-o"></i> </a> <a href="#"> <i class="fa fa-plus-circle"></i> </a> </div>
+                <input ng-model="songSearch" type="text" class="form-control" placeholder="Search for Songs here">
+                <br>
+                <button type="submit" class="btn btn-lg btn-dark">Search</button>
+                
+                </div>
+
+                </form>
+                </div>
+
+            </section>
+ <h3 class="font-thin">Search Results</h3>
+                
+                <div class="row">
+                  
+                    
+                 
+
+                      <div class="col-xs-6 col-sm-3" ng-repeat="loadedSong in loadedSongs">
+
+                        <div class="item">
+                          <div class="pos-rlt">
+                            <div class="item-overlay opacity r r-2x bg-black">
+                              <div class="center text-center m-t-n"> <a ng-click="addtoQueue(loadedSong, $index)"><i class="fa fa-play-circle i-2x"></i></a> </div>
+                            </div>
+                            <img src="{{loadedSong.thumbnail}}" alt="" class="r r-2x img-full"> </div>
+                          <div class="padder-v"> <a class="text-ellipsis">{{loadedSong.title}}</a> <a href="#" class="text-ellipsis text-xs text-muted">{{loadedSong.artist.name}}</a> </div>
                         </div>
-                        <a href="#"><img src="{{loadedSong.thumbnail}}" alt="" class="r r-2x img-full"></a> </div>
-                      <div class="padder-v"> <a href="#" class="text-ellipsis">{{loadedSong.title}}</a> <a ng-click="getArtist(loadedSong.artist.name)" class="text-ellipsis text-xs text-muted">{{loadedSong.artist.name}}</a> </div>
-                    </div>
-                  </div>
-
-                        </section>
-
                       </div>
+        
+            
+                    </div>
+                 
+               
+               
+
+            </div>
+
+
+
+                         <div class="col-md-6" id="liveQueue">
+                    <h3 class="font-thin">Live Queue <a ng-click="startQueue()" class="btn btn-s-md btn-success pull-right">Start Play</a></h3>
+                    <div class="list-group bg-white list-group-lg no-bg auto"> 
+
+                      <a  ng-repeat="loadedSong in incomingQueue track by $index" class="list-group-item clearfix"> 
+                    <span class="pull-right h2 text-muted m-l">{{$index + 1}}</span> 
+                    <span class="pull-left thumb-md avatar m-r"> 
+                    <img src="{{loadedSong.thumbnail}}" alt="..."> </span> 
+                    <span class="clear"> <span>{{loadedSong.title}}</span> <small class="text-muted clear text-ellipsis">by {{loadedSong.artist.name}}</small> </span> </a> 
+
+
+
+                     </div>
+                  </div>
 
         <div class="container">
-         <a ng-click="startQueue()" class="btn btn-s-md btn-success">Start Play</a>
-        <br>
-        <h3 class="font-thin m-b">Queue of Songs</h3>
-       
-
-        <a class="text-xs"> {{player.listofSongs.list}} </a>
-
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2" ng-repeat="loadedSong in incomingQueue track by $index">
-                    <div class="item">
-                      <div class="pos-rlt">
-                        <a href="#"><img src="{{loadedSong.thumbnail}}" alt="" class="r r-2x img-full"></a> </div>
-                      <div class="padder-v"> <a href="#" class="text-ellipsis">{{loadedSong.title}}</a> <a ng-click="getArtist(loadedSong.artist.name)" class="text-ellipsis text-xs text-muted">{{loadedSong.artist.name}}</a> <a class="text-ellipsis text-xs badge bg-info m-l-sm m-b-sm">{{loadedSong.addedBy}}</a> </div>
-                    </div>
-                  </div>
+      
 
               </div>
+
+  <div class="container">
+
+
+
+  </div>
 
 
 

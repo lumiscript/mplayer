@@ -41,6 +41,23 @@
 	app.use(busboy({ immediate: true }));
 
 
+	//MongoDB hookup
+	var monk = require('monk');
+	var db = function() {
+	    return monk('mongodb://lumi:Fibonacci1234@dharma.mongohq.com:10073/gidimongo');
+	} 
+
+	 var mongoInsert = function(mongoObject, user) {
+
+	 	var collection = db().get('musicPlayer');
+
+	 	collection.update({room: user},{'$push': 
+	{ "queue": mongoObject}});
+
+	    };
+
+
+
 
 	
 
@@ -54,6 +71,7 @@
   		// when the client emits 'adduser', this listens and executes
 		socket.on('addtoQueue', function(loadedSong){
 			console.log(loadedSong);
+			mongoInsert(loadedSong, 'coollounge')
 
 			socket.broadcast.emit('incomingSong', loadedSong);
 
@@ -86,7 +104,6 @@
 	
 
 
-
 	//setup ftp
 	var Ftp = new JSFtp({
 		  host: "southpawgroup.com",
@@ -109,6 +126,9 @@
 	});
 
 
+	
+
+
 
 	//get list of songs
 	app.get('/api/song', function(req, res) {
@@ -123,6 +143,65 @@
 		
 
 	});
+
+
+
+	//get list of queue
+	app.get('/api/getQueue', function(req, res) {
+
+		var songQueue = {
+			"tracks": [
+
+
+				  {
+            "artist": {
+                "slug": "yemi-alade",
+                "name": "Yemi Alade"
+            },
+            "slug": "KN9WrS",
+            "starred": false,
+            "plays": 1787,
+            "id": 1949,
+            "title": "Faaji",
+            "url": "http://www.southpawgroup.com/gidiradio/songs/Faaji.mp3",
+            "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/yemialade500.jpg",
+            "is_external": true,
+            "album": {
+                "title": "yemi Alade - Single",
+                "slug": "yemi-alade-single",
+                "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/yemialade500.jpg"
+            }
+        },
+        
+        {
+            "artist": {
+                "slug": "burna-boy",
+                "name": "Burna Boy"
+            },
+            "slug": "6r9MCq",
+            "starred": false,
+            "plays": 10478,
+            "id": 1979,
+            "title": "Smoke Some Weed ft. Onos",
+            "url": "http://www.southpawgroup.com/gidiradio/songs/weed.mp3",
+            "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/BurnaBoy2_BW.jpg",
+            "is_external": true,
+            "album": {
+                "title": "Burna Boy Hot 10",
+                "slug": "burna-boy-hot-10",
+                "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/BurnaBoy2_BW.jpg"
+            }
+        }
+
+			]
+		};
+
+				res.json(songQueue);
+
+			});
+		
+
+
 
 
 

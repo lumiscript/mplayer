@@ -1,5 +1,5 @@
   // create the module and name it musicApp
-  var musicApp = angular.module('musicApp', ['ngRoute', 'angularFileUpload']);
+  var musicApp = angular.module('musicApp', ['ngRoute', 'firebase', 'angularFileUpload', 'angular-loading-bar']);
 
   // configure our routes
   musicApp.config(function($routeProvider) {
@@ -73,25 +73,51 @@ musicApp.factory('liveQueue', ['$window', '$rootScope', function($rootScope) {
 }]);
 
 */
+/*
+musicApp.factory('dataService', function($firebase) {
 
-
-
-musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
-   
+//  var ref = new Firebase("https://gplayer.firebaseio.com/");
   
 
+  return ref;
+
+
+});
+
+*/
+
+musicApp.factory('player', ['$window', function() {
+   
+   //var factoryQueue = dataService.$child('queue');
+    //var queues = dataService.child('queues');
+
+    var rootRef = new Firebase("https://gplayer.firebaseio.com/queues");
+    
+    console.log(rootRef);
+    //var sync = $firebase(rootRef);
+
+    //var queueArray = rootRef.$asArray();
+  
+    var songPosition = 0;
    var player = {
+
 
     listofSongs : {list: []},
 
-    addSong: function(object) {
-      console.log('just added this song ' + object.title );
-      this.listofSongs.list.push(object);
+    getQueueList: function() {
+      
+      return queueArray
     },
 
-    playQueue: function(soundObject, songPosition) {
+    addSongToQueue: function (songobject) {
 
+     queueArray.$add(songobject);
 
+    },
+
+    playQueue: function(soundObject, songPosition, loadedSongs) {
+
+    
     //Toggle play and pause button
      $(".jp-play").css('display', 'none');
      $(".jp-pause").css('display', 'inline-block');
@@ -147,26 +173,18 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
                 
                 var nextPosition = songPosition + 1;
                 //var nextSong = player.listofSongs.list[nextPosition];
-                console.log(player.listofSongs.list[nextPosition] + '  IS NEXT OBJ');
+                console.log(loadedSongs[nextPosition] + '  IS NEXT OBJ');
                 
                 
-                if(player.listofSongs.list[nextPosition] !== undefined)  {
-                      player.playQueue(player.listofSongs.list[nextPosition], nextPosition);    
+                if(loadedSongs[nextPosition] !== undefined)  {
+                      player.playQueue(loadedSongs[nextPosition], nextPosition, loadedSongs);    
                   }
-                  else if (player.listofSongs.list[nextPosition] == undefined )
+                  else if (loadedSongs[nextPosition] == undefined )
                   {
-                    console.log('list is empty');
+                    console.log('end of list');
                   };
-
-                
-
-                
-                
-                
      
             },
-
-
                 
                 });
             
@@ -211,13 +229,14 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
      $(".jp-play").css('display', 'none');
      $(".jp-pause").css('display', 'inline-block');
      
+
+
   
      //player.current = soundObject.title; 
      player.nowPlaying = soundObject.title;
 
       console.log('We are playing song number  ' + songPosition);
-      $rootScope.songPosition = songPosition;
-      console.log($rootScope.songPosition);
+      
      //destroy previously loaded sound
      soundManager.destroySound('aSound');
      console.log(soundObject.source)
@@ -315,9 +334,9 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
     },
 
     playNext: function() {
-              var nextPosition = player.position + 1;
-              var nextSong = player.loadedSongs[nextPosition];
-              player.play(nextSong, nextPosition, player.loadedSongs);
+              var nextPosition = songPosition + 1;
+              var nextSong = player.listofSongs.list[nextPosition];
+              player.play(nextSong, nextPosition);
 
             },
 
@@ -395,6 +414,8 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
     };
 
 
+
+
     //load homepage playlist
     $http.get('/api/song/cloudafrica')
       .success(function(data) {
@@ -409,15 +430,6 @@ musicApp.factory('player', ['$window', '$rootScope', function($rootScope) {
       console.log('Error: ' + data);
     });
 
-
-
-    // remove song from queue - not done!
-    $scope.removeSong = function(songPosition) {
-
-        $scope.loadedQueue.splice(songPosition, 1);
-        console.log('song removed');
-
-    };
 
     //play button
     $scope.playnewSound = function(soundObject, songPosition) {
@@ -508,48 +520,75 @@ musicApp.controller('downloadController', function($scope, $http) {
   });
 
 
-musicApp.controller('queueController', function($scope, $http, $rootScope, player) {
+musicApp.controller('queueController', function($scope, $http, player, $firebase) {
+  
+  $scope.incomingQueue = [];
+
+//CREATE A FIREBASE REFERENCE
+          var ref = new Firebase("https://gplayer.firebaseio.com/");
+
+          // GET MESSAGES AS AN ARRAY
+          $scope.incomingQueue = $firebase(ref).$asArray();
+
+ 
+  // create a synchronized array for use in queue.html
+//$scope.incomingQueue = player.
+
+
+
 
      var socket = io();
      
-    $scope.incomingQueue = [];
+    
     $scope.username = '';
 
 
-    //$rootScope.queueArray = [];
+      //load queue from db
 
+      /*
+      $http.get('/api/getQueue/')
+      .success(function(data) {
+    
+       
+       $scope.incomingQueue = data.tracks;
 
+    })
+
+      .error(function(data) {
+      console.log('Error: ' + data);
+    });
    
-
+*/
 
     // on connection to server, ask for user's name with an anonymous callback
     socket.on('connect', function(){
     // call the server-side function 'adduser' and send one parameter (value of prompt)
-   // socket.emit('adduser', prompt("What's your name?"));
+    //socket.emit('adduser', prompt("What's your name?"));
   });
 
-    $scope.liveQueue = player.listofSongs.list;
+   
+
 
 
     socket.on('incomingSong', function(loadedSong) {
       console.log(loadedSong.title);
-      $scope.incomingQueue.push(loadedSong);
-      $scope.$apply();
 
-    
-      //$scope.playnewSound(loadedSong, 1);
+      //$scope.incomingQueue.$add(loadedSong);
+     
 
 
       player.addSong(loadedSong);
-      $scope.liveQueue = player.listofSongs.list;
-      
+   
+    
 
     });
 
 
+
 $scope.startQueue = function() {
 
-  player.playQueue(player.listofSongs.list[0], 1);
+
+  player.playQueue($scope.incomingQueue[0], 0, $scope.incomingQueue);
 
 };
     
@@ -565,9 +604,15 @@ Array.prototype.remove = function(from, to) {
 
     $scope.addtoQueue = function (loadedSong, index) {
 
-        loadedSong.addedBy = $scope.username;
-        socket.emit('addtoQueue', loadedSong);
+        //loadedSong.addedBy = $scope.username;
+        //socket.emit('addtoQueue', loadedSong);
         $scope.loadedSongs.remove(index);
+        //player.addSongToQueue(loadedSong);
+        $scope.incomingQueue.$add(loadedSong);
+        
+        
+   
+
 
     };
 
@@ -579,27 +624,18 @@ Array.prototype.remove = function(from, to) {
     };
 
     //Live search
-    $scope.$watch('songSearch', function (tmpStr)
-    {
-      //console.log(tmpStr);
-      if (!tmpStr || tmpStr.length == 0)
-        return 0;
-        // if searchStr is still the same..
-        // go ahead and retrieve the data
-        if (tmpStr === $scope.songSearch)
-          {
-         
-            $http.get('/api/search/'+ tmpStr )
+
+    $scope.runSearch = function() {
+
+            $http.get('/api/search/'+ $scope.songSearch )
             .success(function(data) {
 
               console.log(data);
              $scope.loadedSongs = data.tracks.tracks;
 
-          });
-        }
-        
-    });  
+    });
 
+};
 
   
   });
