@@ -164,25 +164,9 @@ musicApp.factory('player', ['$window', function() {
                     
                   },
               onfinish: function() {
-                $(".jp-play-bar").css('width', 0 + '%');
-                $(".jp-pause").css('display', 'none');
-                $(".jp-play").css('display', 'inline-block');
-
-
-
-                
-                var nextPosition = songPosition + 1;
-              
-                console.log(loadedSongs[nextPosition] + '  IS NEXT OBJ');
-                
-                
-                if(loadedSongs[nextPosition] !== undefined)  {
-                      player.playQueue(loadedSongs[nextPosition], nextPosition, loadedSongs);    
-                  }
-                  else if (loadedSongs[nextPosition] == undefined )
-                  {
-                    console.log('end of list');
-                  };
+        
+                player.playNextQueue(loadedSongs, songPosition);
+     
      
             },
                 
@@ -216,6 +200,31 @@ musicApp.factory('player', ['$window', function() {
               });
   
 
+
+
+    },
+
+    playNextQueue : function (loadedSongs, songPosition) {
+
+            $(".jp-play-bar").css('width', 0 + '%');
+                $(".jp-pause").css('display', 'none');
+                $(".jp-play").css('display', 'inline-block');
+
+
+
+                
+                var nextPosition = songPosition + 1;
+              
+               
+                
+                
+                if(loadedSongs[nextPosition] !== undefined)  {
+                      player.playQueue(loadedSongs[nextPosition], nextPosition, loadedSongs);    
+                  }
+                  else if (loadedSongs[nextPosition] == undefined )
+                  {
+                    console.log('end of list');
+                  };
 
 
     },
@@ -722,65 +731,9 @@ $scope.loadedSongs =  {
                 "slug": "burna-boy-hot-10",
                 "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/BurnaBoy2_BW.jpg"
             }
-        },
-        {
-            "artist": {
-                "slug": "kay-switch",
-                "name": "Kay Switch"
-            },
-            "slug": "MJikRD",
-            "starred": false,
-            "plays": 224,
-            "id": 3048,
-            "title": "Blaze with me (Sam Smith Cover)",
-            "url": "Blaze with me (Sam Smith Cover).mp3",
-            "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/blazewithme.jpg",
-            "is_external": false,
-            "album": {
-                "title": "Single",
-                "slug": "",
-                "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/blazewithme.jpg"
-            }
-        },
-        {
-            "artist": {
-                "slug": "2shotz-ft-terry-g",
-                "name": "2 Shotz ft Terry G"
-            },
-            "slug": "kpeff-dey-go",
-            "starred": false,
-            "plays": 142,
-            "id": 403,
-            "title": "Kpeff Dey Go",
-            "url": "kpeffdeygo.mp3",
-            "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/2shotz.jpg",
-            "is_external": false,
-            "album": {
-                "title": "single",
-                "slug": "single",
-                "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/2shotz.jpg"
-            }
-        },
-        {
-            "artist": {
-                "slug": "tasti",
-                "name": "Tasti"
-            },
-            "slug": "mary-me",
-            "starred": false,
-            "plays": 30,
-            "id": 879,
-            "title": "Mary + Me",
-            "url": "music/asaplacetobe.mp3",
-            "source": "clouddrive",
-            "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/tasti_mary_album.jpg",
-            "is_external": false,
-            "album": {
-                "title": "Single",
-                "slug": "single",
-                "thumbnail": "http://southpawgroup.com/gidiloungeart/images/albums_thumbnail/tasti_mary_album.jpg"
-            }
         }
+
+      
     ],
     "created_at": "2014-09-06",
     "owner_id": 2874,
