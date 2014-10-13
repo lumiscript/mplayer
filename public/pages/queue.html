@@ -4,8 +4,8 @@
                   
 <div class="row">
 
-              <div class="col-sm-12">
-            <h3 class="font-thin">{{ roomname }}</h3>
+  <div class="col-sm-12">
+            <h3 class="font-thin"><a ng-click="startQueue()" class="btn btn-lg btn-icon btn-info" ><i class="fa fa-play"></i></a>   {{ roomname }}</h3>
 
             <section class="panel panel-default">
 
@@ -14,10 +14,17 @@
                 <form ng-submit="runSearch()">
                 <div class="form-group">
 
+<!-- 
+  <a href="#" class="btn btn-s-md btn-primary btn-rounded">Trending</a>
+    <a href="#" class="btn btn-s-md btn-primary btn-rounded">Top 10</a>
+    <a href="#" class="btn btn-s-md btn-primary btn-rounded">Indie</a> -->
+
                 <input ng-model="songSearch" type="text" class="form-control input-lg" placeholder="Search for Songs here">
                 <br>
-                <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-lg btn-dark">Search</button>
-                
+  <button type="submit" data-toggle="modal" data-target="#myModal" class="btn btn-lg btn-dark">Search</button>
+  
+  
+
                 
                 </div>
 
@@ -25,6 +32,37 @@
                 </div>
 
             </section>
+
+
+</div>
+</div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+                    <h3 class="font-thin">Live Queue </h3>
+                    <div class="list-group bg-white list-group-lg no-bg auto"> 
+
+                      <a  ng-repeat="loadedSong in incomingQueue track by $index" class="list-group-item clearfix"> 
+                   
+
+                            <span class="pull-right h2 text-muted m-l">{{$index + 1}} </span> 
+                            <span ng-click="removeFromQueue($index)" class="pull-left thumb-md avatar m-r"> 
+                            <img src="{{ loadedSong.thumbnail }}" /> </span> 
+
+                            <span class="clear"> <span>{{loadedSong.title}}  </span> 
+
+                            <small class="text-muted clear text-ellipsis">by {{loadedSong.artist.name}}
+                             </small>
+                             </span>
+                      </a> 
+
+                     </div>
+                  </div>
+
+
+</div>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -61,42 +99,6 @@
   </div>
 </div>
 
-
-
-
-    <div class="row">
-                   <div class="col-md-6">
-                    <h3 class="font-thin">Live Queue <a ng-click="startQueue()" class="btn btn-s-md btn-success pull-right">Start Play</a></h3>
-                    <div class="list-group bg-white list-group-lg no-bg auto"> 
-
-                      <a  ng-repeat="loadedSong in incomingQueue track by $index" class="list-group-item clearfix"> 
-                   
-
-                            <span class="pull-right h2 text-muted m-l">{{$index + 1}} </span> 
-                            <span ng-click="removeFromQueue($index)" class="pull-left thumb-md avatar m-r"> 
-                            <img src="{{ loadedSong.thumbnail }}" /> </span> 
-
-                            <span class="clear"> <span>{{loadedSong.title}}  </span> 
-
-                            <small class="text-muted clear text-ellipsis">by {{loadedSong.artist.name}}
-                             </small>
-                             </span>
-
-
-
-
-                      </a> 
-
-
-
-                     </div>
-                  </div>
-
-
-
-
-
-</div>
 
 
 </section>

@@ -496,36 +496,20 @@ musicApp.controller('downloadController', function($scope, $http) {
     };
 
 
-
-
-
-    //Live search
-     $scope.$watch('songSearch', function (tmpStr)
-    {
-      console.log(tmpStr);
-      if (!tmpStr || tmpStr.length == 0)
-        return 0;
-        // if searchStr is still the same..
-        // go ahead and retrieve the data
-        if (tmpStr === $scope.songSearch)
-          {
-         
-            $http.get('/api/search/'+ tmpStr )
-            .success(function(data) {
-
-              console.log(data);
-             $scope.loadedSongs = data.tracks.tracks;
-
-          });
-        }
-        
-    });  
   
   });
 
 
 musicApp.controller('queueController', function($scope, $http, player, $firebase, $routeParams) {
   
+    //search form
+    $scope.sendSearch = function() {
+
+        console.log($scope.searchText);
+    };
+
+
+
   $scope.roomname = $routeParams.roomname;
 
 
@@ -640,13 +624,14 @@ musicApp.controller('uploadController', function($scope, $upload) {
     for (var i = 0; i < $files.length; i++) {
       var file = $files[i];
       $scope.upload = $upload.upload({
-        url: 'api/upload', //upload.php script, node.js route, or servlet url
+        url: 'api/upload', 
         method: 'POST',
         headers: {'header-key': 'header-value'},
         data: {myObj: $scope.myModelObj},
         file: file, 
       }).progress(function(evt) {
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        $scope.progress = 'percent: ' + parseInt(100.0 * evt.loaded / evt.total)
       }).success(function(data, status, headers, config) {
         // file is uploaded successfully
         console.log(data);
