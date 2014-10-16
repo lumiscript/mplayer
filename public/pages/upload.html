@@ -1,5 +1,5 @@
   <section class="scrollable padder-lg w-f-md"> <a href="#refresh" class="pull-right text-muted m-t-lg" data-toggle="class:fa-spin" ><i class="icon-refresh i-lg inline" id="refresh"></i></a>
-                <h2 class="font-thin m-b">Upload Podcast </h2>
+                <h2 class="font-thin m-b">Upload Song </h2>
                 <div class="row row-sm">
                   
 
@@ -8,54 +8,62 @@
                    <section class="panel panel-default">
               
               <div class="panel-body">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label">File input</label>
-                    <div class="col-sm-10">
-                      <input type="file" class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline v-middle input-s" id="filestyle-0" style="position: fixed; left: -500px;"><div class="bootstrap-filestyle" style="display: inline;">
-                     <label for="filestyle-0" class="btn btn-default"><span>Choose file</span></label>
-                        <button type="submit" class="btn btn-danger">Cancel Upload</button>
-
-                     </div>
-                    </div>
-                  </div>
-
-                    <div class="line line-dashed b-b line-lg pull-in"></div>
-        
-                  <div class="line line-dashed b-b line-lg pull-in"></div>
+          
+          <form class="form-horizontal" method="get">
                  
-
-
-                  <div class="form-group">
-                    <label class="col-sm-2 control-label">Drag and Drop</label>
-                    <div class="col-sm-10">
-                      <div  ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="dragdropover" class="dropfile visible-lg"> <small>Drag and Drop file here</small> 
-                      <small>{{progress}}</small> 
-                      </div>
-                    </div>
-                  </div>
-                  <div class="line line-dashed b-b line-lg pull-in"></div>
-
-            
-                  <div class="form-group">
+          <div class="form-group">
                     <label class="col-sm-2 control-label">Title</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control">
-                      <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> </div>
-                  </div>
+                      <span class="help-block m-b-none">Title of Song</span> </div>
+            </div>
 
-                   <div class="line line-dashed b-b line-lg pull-in"></div>
-              
+             <div class="line line-dashed b-b line-lg pull-in"></div>
 
-                     <div class="form-group">
+             <div class="form-group">
                     <label class="col-sm-2 control-label">Artist</label>
                     <div class="col-sm-10">
                       <input type="text" class="form-control">
-                      <span class="help-block m-b-none">A block of help text that breaks onto a new line and may extend beyond one line.</span> </div>
+                      <span class="help-block m-b-none">Name of Artist / Podcast Creator</span> </div>
                   </div>
+
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Drop Mp3 and Song Art</label>
+                    <div class="col-sm-10">
+                      <div  ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="dragdropover" class="dropfile"> <small>Drag and Drop file here</small> 
+                      <small>{{progress}}</small> 
+
+                     
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="line line-dashed b-b line-lg pull-in"></div>
+
+            
+                  
+
+                        <div class="form-group">
+                              <label class="col-sm-2 control-label">Or Upload Mp3 and Song Art Here</label>
+                          <div class="col-sm-10">
+                      <input type="file"  ng-file-select="onFileSelect($files)"  class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline v-middle input-s" id="filestyle-0" style="position: fixed; left: -500px;">
+
+                      <div class="bootstrap-filestyle" style="display: inline;">
+                     <label for="filestyle-0"  class="btn btn-default"><span>Choose file</span></label>
+                     <button class="btn btn-danger" ng-click="upload.abort()">Cancel Upload</button>
+                       
+
+                     </div>
+                    </div>
+              
+                   
+                  </div>
+
+
                   <div class="line line-dashed b-b line-lg pull-in"></div>
             
                   <div class="form-group">
-                    <label class="col-sm-2 control-label">Switch</label>
+                    <label class="col-sm-2 control-label">Make Private</label>
                     <div class="col-sm-10">
                       <label class="switch">
                         <input type="checkbox">

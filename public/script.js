@@ -630,8 +630,11 @@ musicApp.controller('uploadController', function($scope, $upload) {
         data: {myObj: $scope.myModelObj},
         file: file, 
       }).progress(function(evt) {
+      
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
         $scope.progress = 'percent: ' + parseInt(100.0 * evt.loaded / evt.total)
+      
+
       }).success(function(data, status, headers, config) {
         // file is uploaded successfully
         console.log(data);

@@ -10,14 +10,16 @@
 	var dir = require('node-dir');
 	var Download = require('download');
 	var progress = require('download-status');
-	var fs = require('fs');
-	var Busboy = require('busboy');
-	var busboy  = require('connect-busboy');
+	var fs = require('fs-extra');
 	var os = require('os');
 	var path = require('path');
 	var JSFtp = require("jsftp");
 	var http = require('http').Server(app);
 	var io = require('socket.io')(http);
+	var qt   = require('quickthumb');
+	var formidable = require('formidable');
+	var util = require('util');
+
 	
 
 
@@ -25,10 +27,6 @@
 	var bodyParser = require('body-parser');
 	app.use( bodyParser.json() );     
 	app.use( bodyParser.urlencoded() );
-
-	// configuration =================
-
-	mongoose.connect('mongodb://lumi:Fibonacci1234@dharma.mongohq.com:10073/gidimongo');
 
 	
 
@@ -38,7 +36,11 @@
 	app.use(bodyParser.json()); 									// parse application/json
 	app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse application/vnd.api+json as json
 	app.use(methodOverride());
-	app.use(busboy({ immediate: true }));
+
+
+
+	 // Use quickthumb
+	app.use(qt.static(__dirname + '/'));
 
 
 	//MongoDB hookup
@@ -235,36 +237,43 @@
 	app.post('/api/upload', function(req, res) {
 
 	
-		var filepath = '';
 		
-	    
-	    req.busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-	    
-	    var filepath = 'destFolder/' + filename;
-	    var fstream = fs.createWriteStream(filepath); 
-        file.pipe(fstream);
+	var form = new formidable.IncomingForm();
 
-     
-        console.log(fstream.path);
-
-         Ftp.put(fstream.path, 'soundbuzz/'+filename, function(hadError) {
-		  if (!hadError)
-		    console.log("File transferred successfully!");
-		});
-
-	      //console.log(saveTo);
+    form.parse(req, function(err, fields, files) {
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.write('received upload:\n\n');
+      res.end(util.inspect({fields: fields, files: files}));
+    });
 
 
-	    });
+     form.on('end', function(fields, files) {
+        
+        /* Temporary location of our uploaded file */
+        var temp_path = this.openedFiles[0].path;
+        /* The file name of the uploaded file */
+        var file_name = this.openedFiles[0].name;
+        /* Location where we want to copy the uploaded file */
+        var new_location = 'destFolder/';
+ 
+        fs.copy(temp_path, new_location + file_name, function(err) {  
+            if (err) {
+                console.error(err);
+            } else {
+                console.log("success!")
+                    Ftp.put(new_location + file_name, 'potofbeans/'+file_name, function(hadError) {
+					  if (!hadError)
+				    console.log("File transferred successfully!");
+				});
 
 
 
-	    req.busboy.on('finish', function() {
-	      res.writeHead(200, { 'Connection': 'close' });
-	      res.end("That's all folks!");
-	      console.log('upload complete!!');
-	    });
+            }
+        });
 
+
+
+    });
 
 
 	});
