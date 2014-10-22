@@ -23,6 +23,11 @@
         templateUrl : 'pages/upload.html',
         controller  : 'uploadController'
       })
+         // route for the track page
+      .when('/upload-podcast', {
+        templateUrl : 'pages/uploadPodcast.html',
+        controller  : 'uploadPodcastController'
+      })
        // route for the track page
       .when('/track/:trackslug', {
         templateUrl : 'pages/track.html',
@@ -646,6 +651,48 @@ musicApp.controller('uploadController', function($scope, $upload) {
     }
  
   };
+
+  });
+
+
+
+musicApp.controller('uploadPodcastController', function($scope, $upload, $http) {
+
+  $scope.formdata = {};
+
+
+   $scope.onFileSelect = function($files) {
+
+    //$files: an array of files selected, each file has name, size, and type.
+    for (var i = 0; i < $files.length; i++) {
+      var file = $files[i];
+      $scope.upload = $upload.upload({
+        url: 'api/upload', 
+        method: 'POST',
+        headers: {'header-key': 'header-value'},
+        data: {myObj: $scope.formdata.radioShow},
+    
+        file: file, 
+      }).progress(function(evt) {
+      
+        console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
+        $scope.progress = 'percent: ' + parseInt(100.0 * evt.loaded / evt.total)
+      
+
+      }).success(function(data, status, headers, config) {
+        
+        // file is uploaded successfully
+
+        console.log(data);
+      });
+      //.error(...)
+      //.then(success, error, progress); 
+      // access or attach event listeners to the underlying XMLHttpRequest.
+      //.xhr(function(xhr){xhr.upload.addEventListener(...)})
+    }
+ 
+  };
+
 
 
   

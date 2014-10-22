@@ -19,9 +19,8 @@
 	var qt   = require('quickthumb');
 	var formidable = require('formidable');
 	var util = require('util');
-
-	
-
+	var cheerio = require("cheerio");
+	var wordpress = require( "wordpress" );
 
 
 	var bodyParser = require('body-parser');
@@ -59,6 +58,23 @@
 	    };
 
 
+// Wordpress hookup
+	var client = wordpress.createClient({
+    url: "gidilounge.fm",
+    username: "lumi",
+    password: "thisisatest123"
+	});
+
+	client.getPosts(function( error, posts ) {
+	    console.log( "Found " + posts.length + " posts!" );
+	    console.log(posts);
+
+	    for (i=0; i < posts.length; i++) {
+
+	    	console.log(posts[i].title);
+	    }
+
+	});
 
 
 	
@@ -91,16 +107,6 @@
 
 	
 	});
-
-
-		// when the client emits 'adduser', this listens and executes
-		io.on('emitButton', function(message){
-			console.log(message);
-
-			socket.emit('emitButton', message);
-
-
-		});
 
 
 	
@@ -230,20 +236,98 @@
 	});
 
 
-	//upload song
+	//scrape site
 
-		//download song
-
-	app.post('/api/upload', function(req, res) {
+	app.get('/api/naijamp3', function(req, res) {
 
 	
+		request('http://www.naijamp3s.com/category/music/', function(error, response, body) {
 		
-	var form = new formidable.IncomingForm();
+		
+			var songs = [];
+		  	var $ = cheerio.load(body);
 
-    form.parse(req, function(err, fields, files) {
-      res.writeHead(200, {'content-type': 'text/plain'});
-      res.write('received upload:\n\n');
-      res.end(util.inspect({fields: fields, files: files}));
+
+		$('.post h1 a').each(function(i, elem) {
+
+			//console.log($(elem).attr('href') + '  \n');
+		
+			});
+
+
+
+		var myObject = [];
+		var id = 0;
+
+		$('.post .td-post-text-content').each(function(i, elem) {
+
+			var postcontent = $(elem).text();
+
+			myObject.push({id: id, content: postcontent});
+			id = id + 1;
+
+			//console.log($('p a img').attr('src'));
+
+
+			});
+
+
+			$('.size-full').each (function(i, elem) {
+
+				//console.log($(elem).attr('src'));
+
+					
+			});
+
+			$('.td-post-text-content p a').each(function(i, elem) {
+
+				console.log($(elem).attr('href'));
+
+			});
+			
+
+		//console.log(myObject)
+
+
+
+		});
+
+
+
+
+
+
+	});
+
+
+
+
+	//download song
+	app.post('/api/upload', function(req, res) {
+
+		
+	client.newPost({
+	      title: 'Your title',
+	      status: 'draft', //'publish, draft...',
+	      content: '<strong>This is the content</strong>',
+	      author: 2, // author id
+	      terms: {'category': [302]}
+	    },
+	    function() { 
+	      console.log(arguments);
+	    }
+	);
+		
+		var podcastDirectory = '';
+			
+		var form = new formidable.IncomingForm();
+
+	    form.parse(req, function(err, fields, files) {
+	      res.writeHead(200, {'content-type': 'text/plain'});
+	      res.write('received upload:\n\n');
+	      res.end(util.inspect({fields: fields, files: files}));
+	      console.log(fields.myObj);
+	      podcastDirectory = fields.myObj;
     });
 
 
@@ -255,23 +339,24 @@
         var file_name = this.openedFiles[0].name;
         /* Location where we want to copy the uploaded file */
         var new_location = 'destFolder/';
+
+        podcastDirectory =  podcastDirectory + '/';
  
         fs.copy(temp_path, new_location + file_name, function(err) {  
             if (err) {
                 console.error(err);
             } else {
                 console.log("success!")
-                    Ftp.put(new_location + file_name, 'potofbeans/'+file_name, function(hadError) {
+
+
+                    Ftp.put(new_location + file_name, podcastDirectory+file_name, function(hadError) {
 					  if (!hadError)
-				    console.log("File transferred successfully!");
+				    console.log("File transferred to--  "+ podcastDirectory+file_name + "  --FTP successfully!");
+					var directPath = {absolute: podcastDirectory+file_name};
+					//socket.broadcast.emit('uploadComplete', directPath);
 				});
-
-
-
             }
         });
-
-
 
     });
 
