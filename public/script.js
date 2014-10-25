@@ -671,24 +671,24 @@ musicApp.controller('uploadPodcastController', function($scope, $upload, $http) 
           $scope.selectedFiles = $files;
      };
 
-      $scope.submitForm = function() {
+      // $scope.submitForm = function() {
         
-        //$scope.hideForm = true;
+      //   //$scope.hideForm = true;
      
    
-        var data = {
-          podcastShow: $scope.formdata.radioShow,
-          podcastTitle: $scope.formdata.title,
-          fileName: $scope.uploadedUrl,
-          timeUploaded: Date.now()
-        };
+      //   var data = {
+      //     podcastShow: $scope.formdata.radioShow,
+      //     podcastTitle: $scope.formdata.title,
+      //     fileName: $scope.uploadedUrl,
+      //     timeUploaded: Date.now()
+      //   };
 
-        $http.post("/api/submitPodcast", data).success(function(data, status) {
-             console.log(data);
-             console.log('Form Submitted');
-          });
+      //   $http.post("/api/submitPodcast", data).success(function(data, status) {
+      //        console.log(data);
+      //        console.log('Form Submitted');
+      //     });
 
-      };
+      // };
 
   $scope.selectedFiles = [];
 

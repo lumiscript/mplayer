@@ -65,16 +65,16 @@
     password: "thisisatest123"
 	});
 
-	client.getPosts(function( error, posts ) {
-	    console.log( "Found " + posts.length + " posts!" );
-	    console.log(posts);
+	// client.getPosts(function( error, posts ) {
+	//     console.log( "Found " + posts.length + " posts!" );
+	//     console.log(posts);
 
-	    for (i=0; i < posts.length; i++) {
+	//     for (i=0; i < posts.length; i++) {
 
-	    	console.log(posts[i].title);
-	    }
+	//     	console.log(posts[i].title);
+	//     }
 
-	});
+	// });
 
 
 	
@@ -343,9 +343,9 @@
 		var form = new formidable.IncomingForm();
 
 	   form.parse(req, function(err, fields, files) {
-      res.writeHead(200, {'content-type': 'text/plain'});
-      res.write('received upload:\n\n');
-      res.end(util.inspect({fields: fields, files: files}));
+      // res.writeHead(200, {'content-type': 'text/plain'});
+      // res.write('received upload:\n\n');
+      // res.end(util.inspect({fields: fields, files: files}));
 
 	      podcastDirectory = fields.myObj;
 	      console.log(fields.formData);
