@@ -1,0 +1,798 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"factor",
+				"factoryQueue"
+			],
+			[
+				"music",
+				"musicPlayer"
+			],
+			[
+				"partyServi",
+				"partyService"
+			],
+			[
+				"textMessageServ",
+				"textMessageServiceObject"
+			],
+			[
+				"partyService",
+				"partyServiceObject"
+			],
+			[
+				"authService",
+				"authServiceObject"
+			],
+			[
+				"mag",
+				"margin-left"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"margi",
+				"margin-bottom"
+			],
+			[
+				"backgr",
+				"background-color"
+			],
+			[
+				"duration",
+				"duration"
+			],
+			[
+				"SoundO",
+				"soundObject"
+			],
+			[
+				"icon-cont",
+				"icon-control-play"
+			],
+			[
+				"icon-",
+				"icon-control-play"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"li",
+				"link	Tag"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"backgroun",
+				"background-image"
+			],
+			[
+				"checkbox",
+				"checkboxCheck"
+			],
+			[
+				"myob",
+				"myobjectin"
+			],
+			[
+				"consoe",
+				"console.log(message);"
+			],
+			[
+				"getTodo",
+				"getTodoStuff"
+			],
+			[
+				"mongo",
+				"mongoGetTodos"
+			],
+			[
+				"createSer",
+				"http.createServer(requestListener);"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"margin",
+				"margin-bottom"
+			],
+			[
+				"mailO",
+				"mailObject"
+			],
+			[
+				"pad",
+				"padding-right"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"humid",
+				"humidityTemp"
+			],
+			[
+				"pars",
+				"parse"
+			],
+			[
+				"fanc",
+				"fancyTimestampString"
+			],
+			[
+				"requ",
+				"require"
+			],
+			[
+				"he",
+				"helpmessage"
+			],
+			[
+				"songs",
+				"songsArray"
+			],
+			[
+				"sto",
+				"stocksarray"
+			],
+			[
+				"all",
+				"allstocksobject"
+			],
+			[
+				"found",
+				"foundStock"
+			],
+			[
+				"reqe",
+				"requestedStock"
+			],
+			[
+				"req",
+				"requestedStock"
+			],
+			[
+				"res",
+				"result"
+			],
+			[
+				"request",
+				"requestedStock"
+			],
+			[
+				"sub",
+				"substring"
+			],
+			[
+				"subs",
+				"substring"
+			],
+			[
+				"parse",
+				"parsedBody"
+			],
+			[
+				"co",
+				"console"
+			],
+			[
+				"sen",
+				"send"
+			],
+			[
+				"par",
+				"parsedBody"
+			],
+			[
+				"subsc",
+				"subscriberObject"
+			],
+			[
+				"su",
+				"subscriberObject"
+			],
+			[
+				"subscri",
+				"subscriberObject"
+			],
+			[
+				"s",
+				"substring"
+			],
+			[
+				"Sub",
+				"Subscribers"
+			],
+			[
+				"subscr",
+				"subscribers"
+			],
+			[
+				"send",
+				"senderror"
+			],
+			[
+				"page",
+				"pageNumber"
+			],
+			[
+				"marg",
+				"margin-right"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"play",
+				"playlist"
+			],
+			[
+				"st",
+				"style	Tag"
+			],
+			[
+				"pla",
+				"playlistObject"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
+				"inser",
+				"insertsong"
+			],
+			[
+				"i",
+				"ip"
+			],
+			[
+				"fil",
+				"filterBy"
+			],
+			[
+				"pr",
+				"process"
+			],
+			[
+				"pah",
+				"pathName"
+			],
+			[
+				"con",
+				"contents"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"songobject",
+				"songobject"
+			],
+			[
+				"mar",
+				"margin-bottom"
+			],
+			[
+				"son",
+				"songobject"
+			],
+			[
+				"songob",
+				"songobject"
+			],
+			[
+				"magin",
+				"margin-top"
+			],
+			[
+				"padding",
+				"padding-bottom"
+			],
+			[
+				"bor",
+				"border-right"
+			],
+			[
+				"font-s",
+				"font-size"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"le",
+				"letter-spacing"
+			],
+			[
+				"font-",
+				"font-family"
+			],
+			[
+				"p",
+				"pointer"
+			],
+			[
+				"inline",
+				"inline-block"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 267.0,
+		"selected_items":
+		[
+			[
+				"Snippet: ",
+				"Snippet: html"
+			],
+			[
+				"pretty",
+				"HTMLPrettify"
+			],
+			[
+				"PRET",
+				"HTMLPrettify"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
+			[
+				"package con",
+				"Package Control: Install Package"
+			],
+			[
+				"package cin",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Add Channel"
+			]
+		],
+		"width": 575.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"clear",
+			"Package Control:",
+			"Package Control: Install Package",
+			"package control:",
+			"package control",
+			"package control:",
+			"package",
+			"install package",
+			"install packag",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os; pf='Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler( ))); open( os.path.join( ipp, pf), 'wb' ).write( urllib2.urlopen( 'http://sublime.wbond.net/' +pf.replace( ' ','%20' )).read()); print( 'Please restart Sublime Text to finish installation')",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/gidilounge/code/ionic/app/templates/intro.html",
+		"/Users/gidilounge/code/ionic/app/templates/main.html",
+		"/Users/gidilounge/code/ionic/www/scripts/controllers.js",
+		"/Users/gidilounge/code/ionic/www/templates/main.html",
+		"/Users/gidilounge/code/musicPlayer/public/pages/upload.html",
+		"/Users/gidilounge/code/musicPlayer/server.js",
+		"/Users/gidilounge/code/musicPlayer/public/index.html",
+		"/Users/gidilounge/code/musicPlayer/public/pages/queue.html",
+		"/Users/gidilounge/code/musicPlayer/public/css/musicplayer.css",
+		"/Users/gidilounge/code/musicPlayer/public/pages/uploadPodcast.html",
+		"/Users/gidilounge/code/musicPlayer/public/pages/track.html",
+		"/Users/gidilounge/code/musicPlayer/public/script.js",
+		"/Users/gidilounge/code/musicPlayer/public/css/sweet-alert.css",
+		"/Users/gidilounge/code/musicPlayer/index.html",
+		"/Users/gidilounge/code/twitteropendata/server.js",
+		"/Users/gidilounge/code/waiter/app/js/services.js",
+		"/Users/gidilounge/code/waiter/app/js/controllers.js",
+		"/Users/gidilounge/code/formidable/server.js",
+		"/Users/gidilounge/code/soundrain/server.js",
+		"/Users/gidilounge/code/id3/app.js",
+		"/Users/gidilounge/code/nightmare/server.js",
+		"/Users/gidilounge/code/musicPlayer/public/pages/search.html",
+		"/Users/gidilounge/Desktop/index.html",
+		"/Users/gidilounge/code/lumiapp/lumiapp/app.js",
+		"/Users/gidilounge/code/waiter/app/partials/login.html",
+		"/Users/gidilounge/code/waiter/app/js/app.js",
+		"/Users/gidilounge/code/waiter/app/partials/landing_page.html",
+		"/Users/gidilounge/code/waiter/app/index.html",
+		"/Users/gidilounge/code/waiter/app/css/app.css",
+		"/Users/gidilounge/code/waiter/app/css/auth.css",
+		"/Users/gidilounge/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/gidilounge/Work/churchapp/churchhtml/signin.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/signup.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/css/styles.css",
+		"/Users/gidilounge/Work/churchapp/churchhtml/sermons.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/addprayerrequest.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/events.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/sermonpage.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/addtestimony.html",
+		"/Users/gidilounge/Work/churchapp/churchhtml/bible.html",
+		"/Users/gidilounge/code/waiter/app/partials/waitlist.html",
+		"/Users/gidilounge/code/airplay/server.js",
+		"/Users/gidilounge/code/musicPlayer/public/pages/about.html",
+		"/Users/gidilounge/code/musicPlayer/public/pages/clouddrive.html",
+		"/Users/gidilounge/code/musicPlayer/public/pages/home.html",
+		"/Users/gidilounge/code/todo/public/old/core.js",
+		"/Users/gidilounge/code/musicPlayer/public/js/jPlayer/jplayer.flat.css",
+		"/Users/gidilounge/code/musicPlayer/public/js/jPlayer/demo.js",
+		"/Users/gidilounge/code/gbot2/routes/bot.js",
+		"/Users/gidilounge/code/musicPlayer/public/css/app.v1.css",
+		"/Users/gidilounge/code/musicPlayer/public/pages/contact.html",
+		"/Users/gidilounge/code/musicPlayer/pages/contact.html",
+		"/Users/gidilounge/code/musicPlayer/pages/about.html",
+		"/Users/gidilounge/code/musicPlayer/script.js",
+		"/Users/gidilounge/code/musicPlayer/angular-seed/app/index.html",
+		"/Users/gidilounge/code/musicPlayer/angular-seed/app/partials/global.html",
+		"/Users/gidilounge/code/musicPlayer/angular-seed/app/app.js",
+		"/Users/gidilounge/code/todo/public/coremusic.js",
+		"/Users/gidilounge/code/musicPlayer/angular-seed/app/index 2.html",
+		"/Users/gidilounge/code/todo/public/index.html",
+		"/Users/gidilounge/Desktop/movielist",
+		"/Users/gidilounge/code/todo/server.js",
+		"/Users/gidilounge/code/todo/public/musik/coremusic.js",
+		"/Users/gidilounge/code/todo/public/musik/partials/global.html",
+		"/Users/gidilounge/code/todo/public/musik/index.html",
+		"/Users/gidilounge/code/todo/public/core.js",
+		"/Users/gidilounge/code/clearwater/site/site/css/style.css",
+		"/Users/gidilounge/code/clearwater/site/site/contactus.html",
+		"/Users/gidilounge/code/clearwater/site/site/index.html",
+		"/Users/gidilounge/code/clearwater/site/site/services.html",
+		"/Users/gidilounge/code/clearwater/site/site/aboutus.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/timeline.html",
+		"/Users/gidilounge/code/wordpress/wp-admin/theme-install.php",
+		"/Users/gidilounge/code/postgres/node_modules/pg/test/test-helper.js",
+		"/Users/gidilounge/code/clearwater/index.html",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/js/services.js",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/index.html",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/js/controllers.js",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/partials/partial1.html",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/js/main.js",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/partials/partial2.html",
+		"/Users/gidilounge/code/gShop2/angular-seed/app/json/products.json",
+		"/Users/gidilounge/code/gShop/app/public/core.js",
+		"/Users/gidilounge/code/gShop/app/public/shoppingCart.js",
+		"/Users/gidilounge/code/gShop/app/public/store.js",
+		"/Users/gidilounge/code/gShop/app/public/controller.js",
+		"/Users/gidilounge/code/todo/public/js/index.js",
+		"/Users/gidilounge/code/gShop/app/public/index2.html",
+		"/Users/gidilounge/code/gShop/side-shopping-cart/index.html",
+		"/Users/gidilounge/code/gShop2/AngularJS-Shopping-Cart/app/services/UserService.js",
+		"/Users/gidilounge/code/gShop2/AngularJS-Shopping-Cart/app/server.js",
+		"/Users/gidilounge/code/todo/public/partials/movielist.html",
+		"/Users/gidilounge/code/todo/package.json",
+		"/Users/gidilounge/code/todo/public/css/style.css",
+		"/Users/gidilounge/code/shopping/index.html",
+		"/Users/gidilounge/code/todo/public/options/option3.html",
+		"/Users/gidilounge/code/todo/public/options/option1.html",
+		"/Users/gidilounge/code/todo/public/options/option2.html",
+		"/Users/gidilounge/code/shopping/app/server.js",
+		"/Users/gidilounge/code/shopping/app/models/products.js",
+		"/Users/gidilounge/code/shopping/package.json",
+		"/Users/gidilounge/code/shopping/scripts.js",
+		"/Users/gidilounge/code/shopping/server.js",
+		"/Users/gidilounge/code/shopping/app.js",
+		"/Users/gidilounge/code/songCleaner/app.js",
+		"/Users/gidilounge/code/GidiloungeAngular/index.html",
+		"/Users/gidilounge/code/phantom/app.js",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/class.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/grades-student.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/pricing_table.html",
+		"/Users/gidilounge/Downloads/pdfjs-1.0.21-dist/web/viewer.js",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/quiz.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/grades-teacher.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/grades-teacherdetails.html",
+		"/Users/gidilounge/code/nodefluff/server.js",
+		"/Users/gidilounge/code/gbot2/app.js",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/form_component.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/css/style.css",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/notes-compose.html",
+		"/Users/gidilounge/code/ncshub/views/home.ejs",
+		"/Users/gidilounge/code/ncshub/app.js",
+		"/Users/gidilounge/code/ncshub/views/messages.ejs",
+		"/Users/gidilounge/code/ncshub/views/directory.ejs",
+		"/Users/gidilounge/code/ncshub/views/header.ejs",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/notes-detail.html",
+		"/Users/gidilounge/Work/Scrap/bucketadmin/notes-grid.html",
+		"/Users/gidilounge/Downloads/COPY OF THE PROJECT PLAN.html",
+		"/Users/gidilounge/code/ncshub/routes/index.js"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"queueCon",
+			"submitForm",
+			"modal",
+			"uploadPodc",
+			"uploadPodcast",
+			"uploadPodc",
+			"uploadContr",
+			"uploadPodc",
+			"digest",
+			"fields",
+			"radioShow",
+			"for",
+			"myModal",
+			"queueCont",
+			"uploadPod",
+			"socket",
+			"download",
+			"$http.post",
+			"upload",
+			"data",
+			"upload",
+			"uploadCon",
+			"uploadPodc",
+			"8080",
+			"ftp",
+			"upload",
+			"uploadContr",
+			"   <div class=\"line line-dashed b-b line-lg pull-in\"></div>",
+			"uploadController",
+			"uploadContro",
+			"fa-play",
+			"fa-play ",
+			"fa-play",
+			"var form",
+			"songSearch",
+			"queue",
+			"songSearch",
+			"search",
+			"fa-play",
+			"mymodal",
+			"modal title",
+			"bootstra",
+			"hidden-xs",
+			"download",
+			"nowPlayingArt",
+			"dker",
+			"dkr",
+			"a3.png",
+			"dker",
+			"jp-title text-lt",
+			"queueCont",
+			"$routeParams",
+			"queueController",
+			"playQueue",
+			"player.play",
+			"io",
+			"$asArray",
+			"Firebase",
+			"queue",
+			"queueCon",
+			"queue",
+			"playnext",
+			"incomingQUe",
+			"queueContr",
+			"firebase",
+			"queueContr",
+			"queue",
+			"prompt",
+			"mainContr",
+			"adduser",
+			"username",
+			"sendSearch",
+			"$window",
+			"playQueue",
+			"queueContr",
+			"getQ",
+			"queueController",
+			"dataService",
+			"queueCon",
+			"queue",
+			"incoming",
+			"queueCont",
+			"queue",
+			"queueCon",
+			"queueCont",
+			"queueCon",
+			"bottom",
+			"mainCon",
+			"maincontro",
+			"queueCon",
+			"queue",
+			"a user",
+			"upload",
+			"dropdon",
+			"animate",
+			"open",
+			"maincon",
+			"download",
+			"search",
+			"mainCont",
+			"download",
+			"searchContr",
+			"search",
+			"footer",
+			"%;}}",
+			"download",
+			"downloadContr",
+			"form",
+			"email",
+			"pauseSong",
+			"loadedSong",
+			"ng-click",
+			"nowPlaying",
+			"rootSco",
+			"rootSc",
+			"$rootScope",
+			"$rootscope",
+			"bg-info",
+			"runTest",
+			"jp-title",
+			"footer",
+			"pause",
+			"jplayer",
+			"overflow:hidd",
+			"overflow:",
+			"@media (min-width: 768px)",
+			"hidden",
+			"slim-scroll"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"musicApp",
+			"lumiApp",
+			"Tickets",
+			"Clearwater",
+			" Clearwater Financials",
+			" "
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "index.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"bot.js",
+				"code/gbot2/routes/bot.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 112.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

@@ -16,3 +16,6 @@ min-height: 20px;
 }
 
 
+input.ng-invalid {
+  border: 1px solid red;
+}

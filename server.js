@@ -299,35 +299,56 @@
 
 	});
 
+	// client.newPost({
+	//       title: 'Your title',
+	//       status: 'draft', //'publish, draft...',
+	//       content: '<strong>This is the content</strong>',
+	//       author: 2, // author id
+	//       terms: {'category': [302]}
+	//     },
+	//     function() { 
+	//       console.log(arguments);
+	//     }
+	// );
+
+	//submit podcast
+		//download song
+	app.post('/api/submitPodcast', function(req, res) {
+
+
+		var podcastDetails = {
+		
+			podcastShow: req.body.podcastShow ,
+	        podcastTitle: req.body.podcastTitle,
+	        fileName: req.body.fileName,
+	        timeUploaded: req.body.timeUploaded
+			
+		};
+
+		//console.log(podcastDetails);
+
+
+	});
+
+
 
 
 
 	//download song
 	app.post('/api/upload', function(req, res) {
 
-		
-	client.newPost({
-	      title: 'Your title',
-	      status: 'draft', //'publish, draft...',
-	      content: '<strong>This is the content</strong>',
-	      author: 2, // author id
-	      terms: {'category': [302]}
-	    },
-	    function() { 
-	      console.log(arguments);
-	    }
-	);
-		
+		//console.log(req.body.formdata.podcastTitle)		
 		var podcastDirectory = '';
 			
 		var form = new formidable.IncomingForm();
 
-	    form.parse(req, function(err, fields, files) {
-	      res.writeHead(200, {'content-type': 'text/plain'});
-	      res.write('received upload:\n\n');
-	      res.end(util.inspect({fields: fields, files: files}));
-	      console.log(fields.myObj);
+	   form.parse(req, function(err, fields, files) {
+      res.writeHead(200, {'content-type': 'text/plain'});
+      res.write('received upload:\n\n');
+      res.end(util.inspect({fields: fields, files: files}));
+
 	      podcastDirectory = fields.myObj;
+	      console.log(fields.formData);
     });
 
 
@@ -352,8 +373,7 @@
                     Ftp.put(new_location + file_name, podcastDirectory+file_name, function(hadError) {
 					  if (!hadError)
 				    console.log("File transferred to--  "+ podcastDirectory+file_name + "  --FTP successfully!");
-					var directPath = {absolute: podcastDirectory+file_name};
-					//socket.broadcast.emit('uploadComplete', directPath);
+					
 				});
             }
         });

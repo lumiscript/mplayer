@@ -658,20 +658,51 @@ musicApp.controller('uploadController', function($scope, $upload) {
 
 musicApp.controller('uploadPodcastController', function($scope, $upload, $http) {
 
-  $scope.formdata = {};
+      $scope.formdata = {};
 
+      $scope.formValid = false;
+        
+      $scope.uploadQueue = [];
 
-   $scope.onFileSelect = function($files) {
+     $scope.addToUploadQueue = function($files) {
+
+      //$scope.uploadQueue = $files;
+
+          $scope.selectedFiles = $files;
+     };
+
+      $scope.submitForm = function() {
+        
+        //$scope.hideForm = true;
+     
+   
+        var data = {
+          podcastShow: $scope.formdata.radioShow,
+          podcastTitle: $scope.formdata.title,
+          fileName: $scope.uploadedUrl,
+          timeUploaded: Date.now()
+        };
+
+        $http.post("/api/submitPodcast", data).success(function(data, status) {
+             console.log(data);
+             console.log('Form Submitted');
+          });
+
+      };
+
+  $scope.selectedFiles = [];
+
+   $scope.onFileSelect = function() {
+
 
     //$files: an array of files selected, each file has name, size, and type.
-    for (var i = 0; i < $files.length; i++) {
-      var file = $files[i];
+    for (var i = 0; i < $scope.selectedFiles.length; i++) {
+      var file = $scope.selectedFiles[i];
       $scope.upload = $upload.upload({
         url: 'api/upload', 
         method: 'POST',
         headers: {'header-key': 'header-value'},
-        data: {myObj: $scope.formdata.radioShow},
-    
+        data: {myObj: $scope.formdata.radioShow, formData: $scope.formdata},
         file: file, 
       }).progress(function(evt) {
       
@@ -682,7 +713,6 @@ musicApp.controller('uploadPodcastController', function($scope, $upload, $http) 
       }).success(function(data, status, headers, config) {
         
         // file is uploaded successfully
-
         console.log(data);
       });
       //.error(...)
@@ -691,6 +721,15 @@ musicApp.controller('uploadPodcastController', function($scope, $upload, $http) 
       //.xhr(function(xhr){xhr.upload.addEventListener(...)})
     }
  
+    console.log('http://southpawgroup.com/gidiradio/'+ $scope.formdata.radioShow + '/' + file.name);
+    $scope.uploadedUrl = 'http://southpawgroup.com/gidiradio/'+ $scope.formdata.radioShow + '/' + file.name;
+    
+
+   
+
+   
+
+
   };
 
 

@@ -1,4 +1,4 @@
-  <section class="scrollable padder-lg w-f-md"> <a href="#refresh" class="pull-right text-muted m-t-lg" data-toggle="class:fa-spin" ><i class="icon-refresh i-lg inline" id="refresh"></i></a>
+  <section class="scrollable padder-lg w-f-md"> 
                 <h2 class="font-thin m-b">Upload Podcast </h2>
                 <div class="row row-sm">
                   
@@ -9,7 +9,7 @@
               
               <div class="panel-body">
           
-          <form class="form-horizontal" method="get">
+          <form  name="uploadForm" novalidate ng-submit="submitForm()" class="form-horizontal" method="get" ng-hide="hideForm" >
              
            <div class="form-group">
                     <label class="col-sm-2 control-label">Select Radio Show</label>
@@ -22,7 +22,7 @@
                       </div>
                       <div class="radio i-checks">
                         <label>
-                          <input type="radio" name="norubber" value="norubber" ng-model="formdata.norubber">
+                          <input type="radio" name="norubber" value="norubber" ng-model="formdata.radioShow">
                           <i></i> No Rubber </label>
                       </div>
 
@@ -41,17 +41,38 @@
           <div class="form-group">
                     <label class="col-sm-2 control-label">Title</label>
                     <div class="col-sm-10">
-                      <input ng-model="formdata.title" type="text" class="form-control">
+                      <input name="title" ng-model="formdata.title" type="text" class="form-control"  ng-minlength=3 required>
+       <!-- Title Validation -->
+        <div class="error" 
+        ng-show="uploadForm.title.$dirty && uploadForm.title.$invalid">
+        <small class="error" 
+        ng-show="uploadForm.title.$error.required">
+        Title of Podcast is required.
+        </small>
+       <small class="error" 
+        ng-show="uploadForm.title.$error.minlength">
+        Title of Podcast is required to be at least 3 characters
+        </small>
+      
+        </div>
+
+
                       </div>
-            </div>
+
 
              <div class="line line-dashed b-b line-lg pull-in"></div>
+
+
+            
+
+            </div>
 
                   <div class="form-group">
                     <label class="col-sm-2 control-label">Drop Mp3 </label>
                     <div class="col-sm-10">
-                      <div  ng-file-drop="onFileSelect($files)" ng-file-drag-over-class="dragdropover" class="dropfile"> <small>Drag and Drop file here</small> 
+                      <div  ng-file-drop="addToUploadQueue($files)" ng-file-drag-over-class="dragdropover" class="dropfile"> <small>Drag and Drop file here</small> 
                       <small>{{progress}}</small> 
+                      <small>{{uploadedUrl}}</small> 
 
                      
                       </div>
@@ -62,7 +83,7 @@
                         <div class="form-group">
                               <label class="col-sm-2 control-label">Upload mp3</label>
                           <div class="col-sm-10">
-          <input type="file"  ng-file-select="onFileSelect($files)"  class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline v-middle input-s" id="filestyle-0" style="position: fixed; left: -500px;">
+          <input type="file"  ng-file-select="addToUploadQueue($files)" multiple  class="filestyle" data-icon="false" data-classbutton="btn btn-default" data-classinput="form-control inline v-middle input-s" id="filestyle-0" style="position: fixed; left: -500px;">
 
                 <div class="bootstrap-filestyle" style="display: inline;">
                      <label for="filestyle-0"  class="btn btn-default"><span>Choose file</span></label>
@@ -72,20 +93,14 @@
                      </div>
                     </div>
               
+              {{selectedFiles}}
                    
                   </div>
 
 
                      <div class="line line-dashed b-b line-lg pull-in"></div>
 
-                     <div class="form-group">
-                    <label class="col-sm-2 control-label">Post to Blog</label>
-                    <div class="col-sm-10">
-                      <label class="switch">
-                        <input type="checkbox">
-                        <span></span> </label>
-                    </div>
-                  </div>
+               
 
           <div class="line line-dashed b-b line-lg pull-in"></div>
 
@@ -93,11 +108,45 @@
                   <div class="form-group">
                     <div class="col-sm-4 col-sm-offset-2">
                       <button type="submit" class="btn btn-default">Cancel</button>
-                      <button type="submit" ng-click= "submitForm()" class="btn btn-primary">Submit Form</button>
+                      <button data-toggle="modal" ng-click="onFileSelect($files)" data-target="#myModa" type="submit" class="btn btn-primary" ng-disabled="formValid">Submit Form</button>
+
+
                     </div>
                   </div>
                 </form>
               </div>
+
+
+<!-- Confirmation modal -->
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title" id="myModalLabel">Uploaded Podcast</h4>
+      </div>
+      <div class="modal-body">
+                <div class="row">
+
+
+            <img src="{{ uploadedUrl }}" width="200px" height="200px">        
+            
+                    </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
             </section>
                       </div>
                    
