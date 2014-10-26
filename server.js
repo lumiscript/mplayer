@@ -373,6 +373,9 @@
                     Ftp.put(new_location + file_name, podcastDirectory+file_name, function(hadError) {
 					  if (!hadError)
 				    console.log("File transferred to--  "+ podcastDirectory+file_name + "  --FTP successfully!");
+
+					res.json({status: 'complete'});
+					//res.send('<p>File Transfer Complete</p>');
 					
 				});
             }
