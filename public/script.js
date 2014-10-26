@@ -703,7 +703,9 @@ musicApp.controller('uploadPodcastController', function($scope, $upload, $http) 
         method: 'POST',
         headers: {'header-key': 'header-value'},
         data: {myObj: $scope.formdata.radioShow, formData: $scope.formdata},
-        file: file, 
+        crossDomain: true,
+        file: file,
+
       }).progress(function(evt) {
       
         console.log('percent: ' + parseInt(100.0 * evt.loaded / evt.total));
