@@ -337,7 +337,7 @@
 	//download song
 	app.post('/api/upload', function(req, res) {
 
-		//console.log(req.body.formdata.podcastTitle)		
+		
 		var podcastDirectory = '';
 			
 		var form = new formidable.IncomingForm();
@@ -366,6 +366,8 @@
         fs.copy(temp_path, new_location + file_name, function(err) {  
             if (err) {
                 console.error(err);
+                res.json({status: err});
+
             } else {
                 console.log("success!")
 
