@@ -631,7 +631,7 @@ musicApp.controller('uploadController', function($scope, $upload) {
       $scope.upload = $upload.upload({
         url: 'api/upload', 
         method: 'POST',
-        headers: {'header-key': 'header-value'},
+        headers: {'Content-Type': 'application/json'},
         data: {myObj: $scope.myModelObj},
         file: file, 
       }).progress(function(evt) {
@@ -703,7 +703,6 @@ musicApp.controller('uploadPodcastController', function($scope, $upload, $http) 
         method: 'POST',
         headers: {'header-key': 'header-value'},
         data: {myObj: $scope.formdata.radioShow, formData: $scope.formdata},
-        crossDomain: true,
         file: file,
 
       }).progress(function(evt) {
