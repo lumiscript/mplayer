@@ -2,19 +2,19 @@
   var musicApp = angular.module('musicApp', ['ngRoute', 'firebase', 'angularFileUpload', 'angular-loading-bar']);
 
  
-  musicApp.config(function($httpProvider) {
-     $httpProvider.interceptors.push(function($q) {
-        return {
-          responseError: function(rejection) {
-                if(rejection.status == 0) {
-                  //  console.log(rejection);
-                    return;
-                }
-                return $q.reject(rejection);
-            }
-        };
-    });
-});
+//   musicApp.config(function($httpProvider) {
+//      $httpProvider.interceptors.push(function($q) {
+//         return {
+//           responseError: function(rejection) {
+//                 if(rejection.status == 0) {
+//                   //  console.log(rejection);
+//                     return;
+//                 }
+//                 return $q.reject(rejection);
+//             }
+//         };
+//     });
+// });
 
 
   // configure our routes
