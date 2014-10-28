@@ -7,7 +7,7 @@
         return {
           responseError: function(rejection) {
                 if(rejection.status == 0) {
-                    console.log(rejection);
+                  //  console.log(rejection);
                     return;
                 }
                 return $q.reject(rejection);
