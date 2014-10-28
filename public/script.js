@@ -1,6 +1,22 @@
   // create the module and name it musicApp
   var musicApp = angular.module('musicApp', ['ngRoute', 'firebase', 'angularFileUpload', 'angular-loading-bar']);
 
+ 
+  musicApp.config(function($httpProvider) {
+     $httpProvider.interceptors.push(function($q) {
+        return {
+          responseError: function(rejection) {
+                if(rejection.status == 0) {
+                    console.log(rejection);
+                    return;
+                }
+                return $q.reject(rejection);
+            }
+        };
+    });
+});
+
+
   // configure our routes
   musicApp.config(function($routeProvider) {
     $routeProvider
@@ -631,6 +647,7 @@ musicApp.controller('uploadController', function($scope, $upload) {
       $scope.upload = $upload.upload({
         url: 'api/upload', 
         method: 'POST',
+        headers: {'header-key': 'header-value'},
         data: {myObj: $scope.myModelObj},
         file: file, 
       }).progress(function(evt) {
