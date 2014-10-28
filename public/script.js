@@ -631,7 +631,6 @@ musicApp.controller('uploadController', function($scope, $upload) {
       $scope.upload = $upload.upload({
         url: 'api/upload', 
         method: 'POST',
-        headers: {'Content-Type': 'application/json'},
         data: {myObj: $scope.myModelObj},
         file: file, 
       }).progress(function(evt) {
