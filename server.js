@@ -13,7 +13,9 @@
 	var fs = require('fs-extra');
 	var os = require('os');
 	var path = require('path');
-	var JSFtp = require("jsftp");
+	//var JSFtp = require("jsftp");
+	var Client = require('ftp');
+
 	var http = require('http').Server(app);
 	var io = require('socket.io')(http);
 	var qt   = require('quickthumb');
@@ -112,13 +114,13 @@
 	
 
 
-	//setup ftp
-	var Ftp = new JSFtp({
-		  host: "southpawgroup.com",
-		  port: 21, // defaults to 21
-		  user: "gidipodcasts", // defaults to "anonymous"
-		  pass: "Fibonacci1234%" // defaults to "@anonymous"
-	});
+	// //setup ftp
+	// var Ftp = new JSFtp({
+	// 	  host: "southpawgroup.com",
+	// 	  port: 21, // defaults to 21
+	// 	  user: "gidipodcasts", // defaults to "anonymous"
+	// 	  pass: "Fibonacci1234%" // defaults to "@anonymous"
+	// });
 
 
 
@@ -332,12 +334,14 @@
 
 
 
+	
+
 
 
 	//download song
 	app.post('/api/upload', function(req, res) {
 
-		
+
 		var podcastDirectory = '';
 			
 		var form = new formidable.IncomingForm();
@@ -372,14 +376,33 @@
                 console.log("success!")
 
 
-                    Ftp.put(new_location + file_name, podcastDirectory+file_name, function(hadError) {
-					  if (!hadError)
-				    console.log("File transferred to--  "+ podcastDirectory+file_name + "  --FTP successfully!");
+    //                 Ftp.put(new_location + file_name, podcastDirectory+file_name, function(hadError) {
+				// 	  if (!hadError)
+				//     console.log("File transferred to--  "+ podcastDirectory+file_name + "  --FTP successfully!");
 
-					res.json({status: 'complete'});
-					//res.send('<p>File Transfer Complete</p>');
+				// 	res.json({status: 'complete'});
+				// 	//res.send('<p>File Transfer Complete</p>');
 					
-				});
+				// });
+
+        	var c = new Client();
+			    c.on('ready', function() {
+			    
+			     c.put(new_location + file_name, podcastDirectory+file_name, function(err) {
+			      if (err) throw err;
+			      res.json({status: 'complete'});
+			      c.end();
+			    });
+
+				  });
+		  // connect to localhost:21 as anonymous
+		  c.connect({ host: 'ftp.southpawgroup.com', user: 'gidipodcasts', password: 'Fibonacci1234%' });		
+		
+
+
+
+
+
             }
         });
 
